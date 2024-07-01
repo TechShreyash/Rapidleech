@@ -1,4 +1,4 @@
-# Use a base image with Apache and PHP 7.4
+# Use a base image with PHP 7.4 and commonly used extensions
 FROM php:7.4-apache
 
 # Install necessary system dependencies
@@ -7,33 +7,22 @@ RUN apt-get update && \
         git \
         unzip \
         wget \
-        software-properties-common \
+        libxml2-dev \
+        libcurl4-openssl-dev \
+        libjpeg-dev \
+        libpng-dev \
+        libfreetype6-dev \
+        libicu-dev \
         && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
-
-# Set locale to avoid potential issues
-ENV LC_ALL=en_US.UTF-8
-ENV LANG=en_US.UTF-8
-
-# Add PHP repository for PHP 7.4 (if needed)
-RUN apt-get update && \
-    apt-get install -y \
-        php7.4-common \
-        php7.4-mysql \
-        php7.4-xml \
-        php7.4-xmlrpc \
-        php7.4-curl \
-        php7.4-gd \
-        php7.4-imagick \
-        php7.4-cli \
-        php7.4-dev \
-        php7.4-imap \
-        php7.4-mbstring \
-        php7.4-opcache \
-        php7.4-soap \
-        php7.4-zip \
-        php7.4-intl \
+    docker-php-ext-configure gd --with-jpeg --with-freetype && \
+    docker-php-ext-install -j$(nproc) \
+        pdo_mysql \
+        mysqli \
+        soap \
+        intl \
+        gd \
+        opcache \
+        mbstring \
         && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
