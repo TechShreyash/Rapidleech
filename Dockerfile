@@ -13,8 +13,7 @@ RUN apt-get update && \
         libpng-dev \
         libfreetype6-dev \
         libicu-dev \
-        libonig-dev \  # Add libonig-dev package
-        && \
+        libonig-dev && \
     docker-php-ext-configure gd --with-jpeg --with-freetype && \
     docker-php-ext-install -j$(nproc) \
         pdo_mysql \
@@ -23,8 +22,7 @@ RUN apt-get update && \
         intl \
         gd \
         opcache \
-        mbstring \
-        && \
+        mbstring && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
