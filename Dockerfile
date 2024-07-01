@@ -13,6 +13,7 @@ RUN apt-get update && \
         libpng-dev \
         libfreetype6-dev \
         libicu-dev \
+        libonig-dev \  # Add libonig-dev package
         && \
     docker-php-ext-configure gd --with-jpeg --with-freetype && \
     docker-php-ext-install -j$(nproc) \
