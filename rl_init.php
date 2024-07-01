@@ -27,6 +27,7 @@ define('HOST_DIR', 'hosts/');
 define('CLASS_DIR', 'classes/');
 define('CONFIG_DIR', 'configs/');
 define('BUILD', '30May2011');
+define('CREDITS', '');
 
 require_once(CONFIG_DIR . 'setup.php');
 
