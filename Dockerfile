@@ -1,6 +1,6 @@
 # Use a base image with PHP 7.4 and commonly used extensions
 FROM php:7.4-apache
-
+COPY ports.conf /etc/apache2/ports.conf
 # Install necessary system dependencies
 RUN apt-get update && \
     apt-get install -y \
