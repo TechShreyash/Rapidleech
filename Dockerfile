@@ -33,7 +33,7 @@ RUN a2enmod rewrite && \
 # Download and install Rapidleech
 RUN mkdir -p /var/www/html && \
     cd /var/www/html && \
-    git clone https://github.com/PBhadoo/Rapidleech . && \
+    git clone https://github.com/TechShreyash/Rapidleech-Docker . && \
     mkdir files && \
     chmod 777 files && \
     chmod 777 configs && \
