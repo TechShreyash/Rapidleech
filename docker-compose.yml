@@ -1,0 +1,21 @@
+version: "3.8"
+
+services:
+  rapidleech:
+    build: .
+    container_name: rapidleech
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    volumes:
+      # Map the downloads directory to the requested path
+      - /data/jellyfin-vol/downloads:/data
+      # Map configs directory to persist user settings and configuration
+      - rapidleech-configs:/var/www/html/configs
+    environment:
+      # These can be used to pass any required environment variables
+      - TZ=UTC
+
+volumes:
+  # This volume stores rapidleech configs across container recreations
+  rapidleech-configs:
