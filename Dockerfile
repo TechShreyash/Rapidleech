@@ -66,7 +66,14 @@ RUN rm -rf /var/www/html/rar && \
     chmod +x /var/www/html/rar/rar /var/www/html/rar/unrar && \
     rm -rf /tmp/rar*
 
-# Set correct permissions to allow downloads
+# Copy entrypoint script to fix volume permissions on startup
+COPY docker-entrypoint.sh /usr/local/bin/
+RUN chmod +x /usr/local/bin/docker-entrypoint.sh
+
+# Set correct permissions to allow downloads (for native directories)
 RUN mkdir -p /var/www/html/files && \
     chown -R www-data:www-data /var/www/html && \
     chmod -R 777 /var/www/html/files /var/www/html/configs
+
+ENTRYPOINT ["docker-entrypoint.sh"]
+CMD ["apache2-foreground"]
