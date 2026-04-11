@@ -45,9 +45,9 @@ class dUnzip2{
 	// Public
 	var $fileName;
 	var $lastError;
-	var $compressedList; // You will problably use only this one!
-	var $centralDirList; // Central dir list... It's a kind of 'extra attributes' for a set of files
-	var $endOfCentral;   // End of central dir, contains ZIP Comments
+	var $compressedList = array(); // You will problably use only this one!
+	var $centralDirList = array(); // Central dir list... It's a kind of 'extra attributes' for a set of files
+	var $endOfCentral = array();   // End of central dir, contains ZIP Comments
 	var $debug;
 	
 	// Private
@@ -57,7 +57,7 @@ class dUnzip2{
 	var $dirSignatureE= "\x50\x4b\x05\x06"; // end of central dir signature
 	
 	// Public
-	Function dUnzip2($fileName){
+	Function __construct($fileName){
 		$this->fileName       = $fileName;
 		$this->compressedList = 
 		$this->centralDirList = 
