@@ -66,9 +66,7 @@ RUN rm -rf /var/www/html/rar && \
     chmod +x /var/www/html/rar/rar /var/www/html/rar/unrar && \
     rm -rf /tmp/rar*
 
-# Setup symlink for downloads to point to /data, allowing user mount
-RUN rm -rf /var/www/html/files && \
-    mkdir -p /data && \
-    ln -s /data /var/www/html/files && \
-    chown -R www-data:www-data /data /var/www/html && \
-    chmod -R 777 /data /var/www/html/configs
+# Set correct permissions to allow downloads
+RUN mkdir -p /var/www/html/files && \
+    chown -R www-data:www-data /var/www/html && \
+    chmod -R 777 /var/www/html/files /var/www/html/configs

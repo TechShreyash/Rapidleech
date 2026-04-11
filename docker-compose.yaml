@@ -6,10 +6,10 @@ services:
     container_name: rapidleech
     restart: unless-stopped
     ports:
-      - "80:80"
+      - "100.85.140.85:8088:80"
     volumes:
       # Map the downloads directory to the requested path
-      - /data/jellyfin-vol/downloads:/data
+      - /data/jellyfin-vol/downloads:/var/www/html/files
       # Map configs directory to persist user settings and configuration
       - rapidleech-configs:/var/www/html/configs
     environment:
